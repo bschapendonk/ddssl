@@ -3,23 +3,47 @@
 
 #include <AzureIoTHub.h>
 #include <AzureIoTUtility.h>
-#include <AzureIoTProtocol_HTTP.h>
+#include <AzureIoTProtocol_MQTT.h>
 
-const char* ssid     = "your-ssid";
-const char* password = "your-password";
+#include "Secrets.h"
 
-void setup() {
+uint8_t green = 25;
+uint8_t orange = 26;
+uint8_t red = 27;
+uint8_t ledArray[3] = {1, 2, 3};
+
+int brightness = 0;
+int fadeAmount = 5;
+
+void setup()
+{
+    ledcSetup(1, 12000, 12);
+    ledcSetup(2, 12000, 12);
+    ledcSetup(3, 12000, 12);
+
+    ledcAttachPin(green, 1);
+    ledcAttachPin(orange, 2);
+    ledcAttachPin(red, 3);
+
+    for (uint8_t i = 0; i < 3; i++)
+    {
+        ledcWrite(ledArray[i], 4095); // test high output of all leds in sequence
+        delay(1000);
+        ledcWrite(ledArray[i], 0);
+    }
+
     Serial.begin(115200);
     delay(10);
 
     Serial.println();
     Serial.println();
     Serial.print("Connecting to ");
-    Serial.println(ssid);
+    Serial.println(SECRET_WIFI_SSID);
 
-    WiFi.begin(ssid, password);
+    WiFi.begin(SECRET_WIFI_SSID, SECRET_WIFI_PASSWORD);
 
-    while (WiFi.status() != WL_CONNECTED) {
+    while (WiFi.status() != WL_CONNECTED)
+    {
         delay(500);
         Serial.print(".");
     }
@@ -28,9 +52,22 @@ void setup() {
     Serial.println("WiFi connected");
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
-
 }
 
-void loop() {
-    // put your main code here, to run repeatedly:
+void loop()
+{
+    ledcWrite(1, brightness);
+    ledcWrite(2, brightness);
+    ledcWrite(3, brightness);
+
+    // change the brightness for next time through the loop:
+    brightness = brightness + fadeAmount;
+
+    // reverse the direction of the fading at the ends of the fade:
+    if (brightness <= 0 || brightness >= 4095)
+    {
+        fadeAmount = -fadeAmount;
+    }
+    // wait for 30 milliseconds to see the dimming effect
+    delay(2);
 }
