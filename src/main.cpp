@@ -1,5 +1,7 @@
 #include <Arduino.h>
+
 #include <WiFiClientSecure.h>
+#include <WiFiUdp.h>
 
 #include <AzureIoTHub.h>
 #include <AzureIoTUtility.h>
@@ -14,6 +16,8 @@ uint8_t ledArray[3] = {1, 2, 3};
 
 int brightness = 0;
 int fadeAmount = 5;
+
+static IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle;
 
 void setup()
 {
@@ -52,6 +56,13 @@ void setup()
     Serial.println("WiFi connected");
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
+
+    iotHubClientHandle = IoTHubClient_LL_CreateFromConnectionString(SECRET_DEVICE_CONNECTIONSTRING, MQTT_Protocol);
+    if (iotHubClientHandle == NULL)
+    {
+        Serial.println("Failed on IoTHubClient_CreateFromConnectionString.");
+        while (1);
+    }
 }
 
 void loop()
