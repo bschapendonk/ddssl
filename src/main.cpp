@@ -1,23 +1,9 @@
 #include <Arduino.h>
-
 #include <WiFiClientSecure.h>
 #include <WiFiUdp.h>
 
-#include <iothub.h>
 #include <secrets.h>
-
-void setup()
-{
-    initLights();
-    initSerial();
-    initWifi();
-    initTime();
-}
-
-void loop()
-{
-    iothub_run();
-}
+#include <iothub.h>
 
 void initLights()
 {
@@ -55,7 +41,9 @@ void initWifi()
     while (WiFi.status() != WL_CONNECTED)
     {
         Serial.print(".");
+        ledcWrite(1, 4095);
         delay(500);
+        ledcWrite(1, 0);
     }
 
     Serial.println("Connected to wifi");
@@ -85,4 +73,17 @@ void initTime()
             break;
         }
     }
+}
+
+void setup()
+{
+    initLights();
+    initSerial();
+    initWifi();
+    initTime();
+}
+
+void loop()
+{
+    iothub_run();
 }

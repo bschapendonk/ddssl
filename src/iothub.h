@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-    void iothub_run(void);
+void iothub_run();
 
 #ifdef __cplusplus
 }

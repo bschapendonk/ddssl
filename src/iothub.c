@@ -1,46 +1,45 @@
 #include <Arduino.h>
 #include <AzureIoTHub.h>
 
-#include "secrets.h"
+#include <secrets.h>
 
 BEGIN_NAMESPACE(DeveloperDeskStatusStackLight);
 
 DECLARE_MODEL(StackLight,
-    WITH_ACTION(SetRed, uint8_t, Brightness),
-    WITH_ACTION(SetOrange, uint8_t, Brightness),
-    WITH_ACTION(SetGreen, uint8_t, Brightness)
-    );
+              WITH_ACTION(SetRed, uint8_t, Brightness),
+              WITH_ACTION(SetOrange, uint8_t, Brightness),
+              WITH_ACTION(SetGreen, uint8_t, Brightness));
 
 END_NAMESPACE(DeveloperDeskStatusStackLight);
 
-EXECUTE_COMMAND_RESULT SetGreen(StackLight* device, uint8_t Brightness)
+EXECUTE_COMMAND_RESULT SetGreen(StackLight *device, uint8_t Brightness)
 {
-    (void)device;
-    (void)ledcWrite(1, Brightness);
-    (void)printf("Setting Green Brightness to %d.\r\n", Brightness);
+    device;
+    ledcWrite(1, Brightness);
+    printf("Setting Green Brightness to %d.\r\n", Brightness);
     return EXECUTE_COMMAND_SUCCESS;
 }
 
-EXECUTE_COMMAND_RESULT SetOrange(StackLight* device, uint8_t Brightness)
+EXECUTE_COMMAND_RESULT SetOrange(StackLight *device, uint8_t Brightness)
 {
-    (void)device;
-    (void)ledcWrite(2, Brightness);
-    (void)printf("Setting Orange Brightness to %d.\r\n", Brightness);
+    device;
+    ledcWrite(2, Brightness);
+    printf("Setting Orange Brightness to %d.\r\n", Brightness);
     return EXECUTE_COMMAND_SUCCESS;
 }
 
-EXECUTE_COMMAND_RESULT SetRed(StackLight* device, uint8_t Brightness)
+EXECUTE_COMMAND_RESULT SetRed(StackLight *device, uint8_t Brightness)
 {
-    (void)device;
-    (void)ledcWrite(3, Brightness);
-    (void)printf("Setting Red Brightness to %d.\r\n", Brightness);
+    device;
+    ledcWrite(3, Brightness);
+    printf("Setting Red Brightness to %d.\r\n", Brightness);
     return EXECUTE_COMMAND_SUCCESS;
 }
 
-static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE message, void* userContextCallback)
+static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE message, void *userContextCallback)
 {
     IOTHUBMESSAGE_DISPOSITION_RESULT result;
-    const unsigned char* buffer;
+    const unsigned char *buffer;
     size_t size;
     if (IoTHubMessage_GetByteArray(message, &buffer, &size) != IOTHUB_MESSAGE_OK)
     {
@@ -50,7 +49,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
     else
     {
         /*buffer is not zero terminated*/
-        char* temp = malloc(size + 1);
+        char *temp = malloc(size + 1);
         if (temp == NULL)
         {
             printf("failed to malloc\r\n");
@@ -58,30 +57,28 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT IoTHubMessage(IOTHUB_MESSAGE_HANDLE mess
         }
         else
         {
-            (void)memcpy(temp, buffer, size);
+            memcpy(temp, buffer, size);
             temp[size] = '\0';
             EXECUTE_COMMAND_RESULT executeCommandResult = EXECUTE_COMMAND(userContextCallback, temp);
             result =
-                (executeCommandResult == EXECUTE_COMMAND_ERROR) ? IOTHUBMESSAGE_ABANDONED :
-                (executeCommandResult == EXECUTE_COMMAND_SUCCESS) ? IOTHUBMESSAGE_ACCEPTED :
-                IOTHUBMESSAGE_REJECTED;
+                (executeCommandResult == EXECUTE_COMMAND_ERROR) ? IOTHUBMESSAGE_ABANDONED : (executeCommandResult == EXECUTE_COMMAND_SUCCESS) ? IOTHUBMESSAGE_ACCEPTED : IOTHUBMESSAGE_REJECTED;
             free(temp);
         }
     }
     return result;
 }
 
-void iothub_run(void)
+void iothub_run()
 {
     if (platform_init() != 0)
     {
-        (void)printf("Failed to initialize platform.\r\n");
+        printf("Failed to initialize platform.\r\n");
     }
     else
     {
         if (serializer_init(NULL) != SERIALIZER_OK)
         {
-            (void)printf("Failed on serializer_init\r\n");
+            printf("Failed on serializer_init\r\n");
         }
         else
         {
@@ -89,14 +86,14 @@ void iothub_run(void)
 
             if (iotHubClientHandle == NULL)
             {
-                (void)printf("Failed on IoTHubClient_LL_Create\r\n");
+                printf("Failed on IoTHubClient_LL_Create\r\n");
             }
             else
             {
-                StackLight* stackLight = CREATE_MODEL_INSTANCE(DeveloperDeskStatusStackLight, StackLight);
+                StackLight *stackLight = CREATE_MODEL_INSTANCE(DeveloperDeskStatusStackLight, StackLight);
                 if (stackLight == NULL)
                 {
-                    (void)printf("Failed on CREATE_MODEL_INSTANCE\r\n");
+                    printf("Failed on CREATE_MODEL_INSTANCE\r\n");
                 }
                 else
                 {
