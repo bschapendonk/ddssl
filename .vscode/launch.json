@@ -6,7 +6,7 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             "name": "PlatformIO Debugger",
-            "target": "c:/Users/barts/Source/Repos/ddssl/.pioenvs/esp32thing/firmware.elf",
+            "target": "c:/Users/barts/source/repos/ddssl/.pioenvs/esp32thing/firmware.elf",
             "gdbpath": "C:/Users/barts/.platformio/penv/Scripts/piodebuggdb",
             "autorun": [ "source .pioinit" ]
         }
