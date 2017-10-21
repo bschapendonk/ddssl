@@ -7,9 +7,9 @@
 
 void initLights()
 {
+    ledcSetup(0, 200, 255);
     ledcSetup(1, 200, 255);
     ledcSetup(2, 200, 255);
-    ledcSetup(3, 200, 255);
 
     ledcAttachPin(25, 1);
     ledcAttachPin(26, 2);
@@ -41,9 +41,9 @@ void initWifi()
     while (WiFi.status() != WL_CONNECTED)
     {
         Serial.print(".");
-        ledcWrite(1, 255);
+        ledcWrite(0, 255);
         delay(250);
-        ledcWrite(1, 0);
+        ledcWrite(0, 0);
         delay(250);
     }
 

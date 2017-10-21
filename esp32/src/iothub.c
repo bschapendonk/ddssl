@@ -13,9 +13,9 @@ END_NAMESPACE(DeveloperDeskStatusStackLight);
 EXECUTE_COMMAND_RESULT brightness(StackLight *device, int green, int orange, int red)
 {
     device;
-    ledcWrite(1, green);
-    ledcWrite(2, orange);
-    ledcWrite(3, red);
+    ledcWrite(0, green);
+    ledcWrite(1, orange);
+    ledcWrite(2, red);
     printf("Set Brightness to Green: %d, Orange: %d, Red: %d.\r\n", green, orange, red);
     return EXECUTE_COMMAND_SUCCESS;
 }
