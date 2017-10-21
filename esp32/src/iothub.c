@@ -6,33 +6,17 @@
 BEGIN_NAMESPACE(DeveloperDeskStatusStackLight);
 
 DECLARE_MODEL(StackLight,
-              WITH_ACTION(SetRed, uint8_t, Brightness),
-              WITH_ACTION(SetOrange, uint8_t, Brightness),
-              WITH_ACTION(SetGreen, uint8_t, Brightness));
+              WITH_ACTION(brightness, int, green, int, orange, int, red));
 
 END_NAMESPACE(DeveloperDeskStatusStackLight);
 
-EXECUTE_COMMAND_RESULT SetGreen(StackLight *device, uint8_t Brightness)
+EXECUTE_COMMAND_RESULT brightness(StackLight *device, int green, int orange, int red)
 {
     device;
-    ledcWrite(1, Brightness);
-    printf("Setting Green Brightness to %d.\r\n", Brightness);
-    return EXECUTE_COMMAND_SUCCESS;
-}
-
-EXECUTE_COMMAND_RESULT SetOrange(StackLight *device, uint8_t Brightness)
-{
-    device;
-    ledcWrite(2, Brightness);
-    printf("Setting Orange Brightness to %d.\r\n", Brightness);
-    return EXECUTE_COMMAND_SUCCESS;
-}
-
-EXECUTE_COMMAND_RESULT SetRed(StackLight *device, uint8_t Brightness)
-{
-    device;
-    ledcWrite(3, Brightness);
-    printf("Setting Red Brightness to %d.\r\n", Brightness);
+    ledcWrite(1, green);
+    ledcWrite(2, orange);
+    ledcWrite(3, red);
+    printf("Set Brightness to Green: %d, Orange: %d, Red: %d.\r\n", green, orange, red);
     return EXECUTE_COMMAND_SUCCESS;
 }
 

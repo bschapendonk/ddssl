@@ -7,9 +7,9 @@
 
 void initLights()
 {
-    ledcSetup(1, 12000, 12);
-    ledcSetup(2, 12000, 12);
-    ledcSetup(3, 12000, 12);
+    ledcSetup(1, 20000, 12);
+    ledcSetup(2, 20000, 12);
+    ledcSetup(3, 20000, 12);
 
     ledcAttachPin(25, 1);
     ledcAttachPin(26, 2);
