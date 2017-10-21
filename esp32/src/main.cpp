@@ -7,9 +7,9 @@
 
 void initLights()
 {
-    ledcSetup(1, 20000, 12);
-    ledcSetup(2, 20000, 12);
-    ledcSetup(3, 20000, 12);
+    ledcSetup(1, 200, 255);
+    ledcSetup(2, 200, 255);
+    ledcSetup(3, 200, 255);
 
     ledcAttachPin(25, 1);
     ledcAttachPin(26, 2);
@@ -18,7 +18,7 @@ void initLights()
     int ledArray[3] = {1, 2, 3};
     for (int i = 0; i < 3; i++)
     {
-        ledcWrite(ledArray[i], 4095); // test high output of all leds in sequence
+        ledcWrite(ledArray[i], 255); // test high output of all leds in sequence
         delay(1000);
         ledcWrite(ledArray[i], 0);
     }
@@ -41,7 +41,7 @@ void initWifi()
     while (WiFi.status() != WL_CONNECTED)
     {
         Serial.print(".");
-        ledcWrite(1, 4095);
+        ledcWrite(1, 255);
         delay(250);
         ledcWrite(1, 0);
         delay(250);
@@ -65,7 +65,7 @@ void initTime()
         if (epochTime == 0)
         {
             Serial.println("Fetching NTP epoch time failed! Waiting 2 seconds to retry.");
-            ledcWrite(1, 4095);
+            ledcWrite(1, 255);
             delay(1000);
             ledcWrite(1, 0);
             delay(1000);
