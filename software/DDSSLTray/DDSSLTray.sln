@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDSSLTray", "DDSSLTray\DDSSLTray.csproj", "{6F25D8BA-115D-43C3-9958-976D6BC7545C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F25D8BA-115D-43C3-9958-976D6BC7545C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F25D8BA-115D-43C3-9958-976D6BC7545C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F25D8BA-115D-43C3-9958-976D6BC7545C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F25D8BA-115D-43C3-9958-976D6BC7545C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DCC0898-E5A0-4800-83FD-430D424B534D}
+	EndGlobalSection
+EndGlobal
