@@ -56,7 +56,7 @@ void initTime()
 {
     time_t epochTime;
 
-    configTime(0, 0, "time1.google.com", "time1.google.com");
+    configTime(0, 0, "time.google.com");
 
     while (true)
     {
