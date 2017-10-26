@@ -32,12 +32,25 @@ void initSerial()
 
 void initWifi()
 {
-    Serial.print("Attempting to connect to SSID: ");
-    Serial.println(SECRET_WIFI_SSID);
+    /*
+    WiFi.mode(WIFI_AP_STA);
+    WiFi.beginSmartConfig();
+
+    Serial.println("Waiting for SmartConfig.");
+    while (!WiFi.smartConfigDone())
+    {
+        Serial.print(".");
+        ledcWrite(2, 255);
+        delay(250);
+        ledcWrite(2, 0);
+        delay(250);
+    }
+    Serial.println("SmartConfig done.");
+    */
 
     WiFi.begin(SECRET_WIFI_SSID, SECRET_WIFI_PASSWORD);
 
-    Serial.print("Waiting for Wifi connection.");
+    Serial.println("Waiting for WiFi");
     while (WiFi.status() != WL_CONNECTED)
     {
         Serial.print(".");
@@ -47,9 +60,11 @@ void initWifi()
         delay(250);
     }
 
-    Serial.println("Connected to wifi");
-    Serial.println("IP address: ");
+    Serial.println("WiFi Connected.");
+    Serial.print("IP Address: ");
     Serial.println(WiFi.localIP());
+    Serial.print("IPv6 address: ");
+    Serial.println(WiFi.localIPv6());
 }
 
 void initTime()
