@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="DDSSLFace.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DDSSLFace"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="Black">
+        <CaptureElement Name="PreviewControl" Stretch="UniformToFill"/>
+        <Canvas Name="FaceCanvas" />
+        <TextBlock Name="CountDown" HorizontalAlignment="Right" Text="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" Foreground="Cyan" Opacity="0.7" Margin="0,10,30,0" FontFamily="Consolas"/>
+        <TextBlock Name="Status" HorizontalAlignment="Left" Text="" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="32" Foreground="Cyan" Opacity="0.7" FontFamily="Consolas" Margin="10,0,0,0"/>
+        <Image Name="Lamp" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill" Margin="30,40,0,0" Opacity="0.7" Width="128" Height="128"/>
+    </Grid>
+</Page>
