@@ -1,2 +1,3 @@
-# ddssl
-Developer Desk Status Stack Light
+# DDSSL (Developer Desk Status Stack Light)
+
+![ddssl](assets/ddssl.png)
