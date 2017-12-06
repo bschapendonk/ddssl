@@ -19,4 +19,4 @@
 
 ![ddssl](assets/2.jpg)
 
-![ddssl](assets/3.png)
+![ddssl](assets/3.jpg)
