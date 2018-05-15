@@ -37,6 +37,8 @@
             this.red = new System.Windows.Forms.TrackBar();
             this.yellow = new System.Windows.Forms.TrackBar();
             this.green = new System.Windows.Forms.TrackBar();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.worker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.red)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yellow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.green)).BeginInit();
@@ -90,7 +92,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 140);
+            this.label4.Location = new System.Drawing.Point(14, 140);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 5;
@@ -126,11 +128,27 @@
             this.green.TickFrequency = 25;
             this.green.Scroll += new System.EventHandler(this.green_Scroll);
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(75, 179);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(71, 17);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "VU Meter";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // worker
+            // 
+            this.worker.WorkerSupportsCancellation = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 186);
+            this.ClientSize = new System.Drawing.Size(292, 202);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.green);
             this.Controls.Add(this.yellow);
             this.Controls.Add(this.red);
@@ -161,6 +179,8 @@
         private System.Windows.Forms.TrackBar red;
         private System.Windows.Forms.TrackBar yellow;
         private System.Windows.Forms.TrackBar green;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.ComponentModel.BackgroundWorker worker;
     }
 }
 
